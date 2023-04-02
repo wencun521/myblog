@@ -170,32 +170,7 @@
 <li>虚拟化让许多程序运行（从而共享 CPU），让许多程序可以同时访问自己的指令和数据（从而共享内存），让许多程序访问设备（从而共享磁盘等），所以操作系统有时被称为资源操理器（resource manager）——操作系统导论</li>
 </ul>
 </blockquote>
-<h3 id="虚拟化cpu"><a href="#虚拟化cpu" class="headerlink" title="虚拟化cpu"></a>虚拟化cpu</h3><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;assert.h&gt;
-
-int main(int argc, char *argv[])
-{
-    /*这行代码使用了assert函数来确保程序的调用者提供了一个参数。如果 argc 不等于 2，即程序被调用时没有传入参数或传入了多个参数，assert函数会中止程序的执行并输出一条错误消息。如果 argc 等于2，即程序被调用时传入了一个参数，assert函数会使程序继续执行下去。在这个特定的程序中，argv[0] 包含了程序的名称，而 argv[1] 包含了第一个参数，因此需要确保 argc 的值为 2 才能正确获取命令行参数。*/
-    assert(argc == 2);
-    char *str = argv[1];
-    while (1)
-    {
-        printf("%s\n", str);
-        sleep(1);
-    }
-    return 0;
-}
-/*这个C程序接受一个命令行参数，并使用一个无限循环，每秒钟将其打印到控制台。
-
-以下是程序逻辑的详细解释：
-使用 assert 函数验证程序是否被调用时只传入了一个参数（程序名称本身被认为是第一个参数）。
-第一个参数被存储在变量 str 中。
-程序进入无限循环，使用 printf 连续将 str 的值打印到控制台。
-使用 sleep 函数在每次循环迭代之间暂停程序1秒钟。
-最后，main 函数返回0以表示成功执行。
-需要注意的是，由于使用了一个无限循环，这个程序可能会一直运行直到手动终止或中断为止。*/</code></pre>
+<h3 id="虚拟化cpu"><a href="#虚拟化cpu" class="headerlink" title="虚拟化cpu"></a>虚拟化cpu</h3><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">/*这行代码使用了assert函数来确保程序的调用者提供了一个参数。如果 argc 不等于 2，即程序被调用时没有传入参数或传入了多个参数，assert函数会中止程序的执行并输出一条错误消息。如果 argc 等于2，即程序被调用时传入了一个参数，assert函数会使程序继续执行下去。在这个特定的程序中，argv[0] 包含了程序的名称，而 argv[1] 包含了第一个参数，因此需要确保 argc 的值为 2 才能正确获取命令行参数。*/</span></span><br><span class="line">    <span class="built_in">assert</span>(argc == <span class="number">2</span>);</span><br><span class="line">    <span class="type">char</span> *str = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, str);</span><br><span class="line">        <span class="built_in">sleep</span>(<span class="number">1</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"><span class="comment">/*这个C程序接受一个命令行参数，并使用一个无限循环，每秒钟将其打印到控制台。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">以下是程序逻辑的详细解释：</span></span><br><span class="line"><span class="comment">使用 assert 函数验证程序是否被调用时只传入了一个参数（程序名称本身被认为是第一个参数）。</span></span><br><span class="line"><span class="comment">第一个参数被存储在变量 str 中。</span></span><br><span class="line"><span class="comment">程序进入无限循环，使用 printf 连续将 str 的值打印到控制台。</span></span><br><span class="line"><span class="comment">使用 sleep 函数在每次循环迭代之间暂停程序1秒钟。</span></span><br><span class="line"><span class="comment">最后，main 函数返回0以表示成功执行。</span></span><br><span class="line"><span class="comment">需要注意的是，由于使用了一个无限循环，这个程序可能会一直运行直到手动终止或中断为止。*/</span></span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>这个程序是一个C程序，需要通过编译器将源代码编译成可执行文件后才能运行。下面是运行这个程序的步骤：</p>
 <ol>
@@ -209,15 +184,15 @@ int main(int argc, char *argv[])
 <li><p>在终端或命令提示符中输入以下命令来编译程序：</p>
 </li>
 </ol>
-<pre class="language-c++" data-language="c++"><code class="language-c++">gcc -o cpu cpu.c//这将使用gcc编译器将源代码文件 "cpu.c" 编译成可执行文件 "cpu"。`</code></pre>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o cpu cpu.c<span class="comment">//这将使用gcc编译器将源代码文件 "cpu.c" 编译成可执行文件 "cpu"。`</span></span><br></pre></td></tr></tbody></table></figure>
 
 <ol start="5">
 <li>运行程序，输入以下命令：   </li>
 </ol>
-<pre class="language-c++" data-language="c++"><code class="language-c++">./cpu//这将在终端或命令提示符中启动程序。</code></pre>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cpu<span class="comment">//这将在终端或命令提示符中启动程序。</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>请注意，如果程序需要命令行参数，则需要在运行程序时指定这些参数。例如，如果程序需要一个字符串参数，则可以使用以下命令来运行程序：  </p>
-<pre class="language-c++" data-language="c++"><code class="language-c++">./"A"//这将向程序传递一个字符串参数 "A"。</code></pre>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./<span class="string">"A"</span><span class="comment">//这将向程序传递一个字符串参数 "A"。</span></span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h4><p>使用 <code>ps</code> 命令来查找程序的进程号（PID），然后使用 <code>kill</code> 命令来停止程序的执行。具体来说，可以使用以下命令来查找程序的进程号：</p>
 <p><code>ps -ef | grep cpu</code></p>
