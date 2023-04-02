@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2023/04/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2023/04/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<h2 id="什么是虚拟化"><a href="#什么是虚拟化" class="headerlink" title="什么是虚拟化?"></a>什么是虚拟化?</h2><p>虚拟化，是指通过虚拟化技术将一台计算机虚拟为多台逻辑计算机。在一台计算机上同时运行多个逻辑计算机，每个逻辑计算机可运行不同的操作系统，并且应用程序都可以在相互独立的空间内运行而互不影响，从而显著提高计算机的工作效率。  </p><blockquote><ul><li>操作系统将物理（physical）资源（如处理器、内存或磁盘）转换为更通用、更强大且更易于使用的虚拟形式</li><li>虚拟化让许多程序运行（从而共享 CPU），让许多程序可以同时访问自己的指令和数据（从而共享内存），让许多程序访问设备（从而共享磁盘等），所以操作系统有时被称为资源操理器（resource manager）——操作系统导论</li></ul></blockquote><h3 id="虚拟化cpu"><a href="#虚拟化cpu" class="headerlink" title="虚拟化cpu"></a>虚拟化cpu</h3><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;unistd.h&gt;#include &lt;assert.h&gt;int main(int argc, char *argv[]){    /*这行代码使用了assert函数来确保程序的调用者提供了一个参数。如果 argc 不等于 2，即程序被调用时没有传入参数或传入了多个参数，assert函数会中止程序的执行并输出一条错误消息。如果 argc 等于2，即程序被调用时传入了一个参数，assert函数会使程序继续执行下去。在这个特定的程序中，argv[0] 包含了程序的名称，而 argv[1] 包含了第一个参数，因此需要确保 argc 的值为 2 才能正确获取命令行参数。*/    assert(argc == 2);    char *str = argv[1];    while (1)    {        printf("%s\n", str);        sleep(1);    }    return 0;}/*这个C程序接受一个命令行参数，并使用一个无限循环，每秒钟将其打印到控制台。以下是程序逻辑的详细解释：使用 assert 函数验证程序是否被调用时只传入了一个参数（程序名称本身被认为是第一个参数）。第一个参数被存储在变量 str 中。程序进入无限循环，使用 printf 连续将 str 的值打印到控制台。使用 sleep 函数在每次循环迭代之间暂停程序1秒钟。最后，main 函数返回0以表示成功执行。需要注意的是，由于使用了一个无限循环，这个程序可能会一直运行直到手动终止或中断为止。*/</code></pre><h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>这个程序是一个C程序，需要通过编译器将源代码编译成可执行文件后才能运行。下面是运行这个程序的步骤：</p><ol><li><p>将程序的源代码保存到一个文件中，例如 “cpu.c”。</p><p><code>touch cpu.c</code></p></li><li><p>安装一个C编译器，例如gcc。如果你使用的是Linux或MacOS操作系统，大多数发行版和版本都已经默认安装了gcc编译器。如果你使用的是Windows操作系统，可以安装MinGW或Cygwin来获得gcc编译器。</p></li><li><p>打开终端或命令提示符，并进入保存源代码的目录。</p></li><li><p>在终端或命令提示符中输入以下命令来编译程序：</p></li></ol><pre class="language-c++" data-language="c++"><code class="language-c++">gcc -o cpu cpu.c//这将使用gcc编译器将源代码文件 "cpu.c" 编译成可执行文件 "cpu"。`</code></pre><ol start="5"><li>运行程序，输入以下命令：   </li></ol><pre class="language-c++" data-language="c++"><code class="language-c++">./cpu//这将在终端或命令提示符中启动程序。</code></pre><p>请注意，如果程序需要命令行参数，则需要在运行程序时指定这些参数。例如，如果程序需要一个字符串参数，则可以使用以下命令来运行程序：  </p><pre class="language-c++" data-language="c++"><code class="language-c++">./"A"//这将向程序传递一个字符串参数 "A"。</code></pre><h4 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h4><p>使用 <code>ps</code> 命令来查找程序的进程号（PID），然后使用 <code>kill</code> 命令来停止程序的执行。具体来说，可以使用以下命令来查找程序的进程号：</p><p><code>ps -ef | grep cpu</code></p><p>这将输出包含程序进程信息的行，其中第二列是进程号（PID）。</p><img src="https://s2.loli.net/2023/04/02/87DOW2vQACKenEm.png">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2023/03/30/hello-world/"/>
       <url>/2023/03/30/hello-world/</url>
