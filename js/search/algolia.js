@@ -3,8 +3,8 @@ window.addEventListener('load', () => {
     const bodyStyle = document.body.style
     bodyStyle.width = '100%'
     bodyStyle.overflow = 'hidden'
-    btf.animateIn(document.getElementById('search-mask'), 'to_show 0.5s')
-    btf.animateIn(document.querySelector('#algolia-search .search-dialog'), 'titleScale 0.5s')
+    acy.animateIn(document.getElementById('search-mask'), 'to_show 0.5s')
+    acy.animateIn(document.querySelector('#algolia-search .search-dialog'), 'titleScale 0.5s')
     setTimeout(() => { document.querySelector('#algolia-search .ais-SearchBox-input').focus() }, 100)
 
     // shortcut: ESC
@@ -20,8 +20,8 @@ window.addEventListener('load', () => {
     const bodyStyle = document.body.style
     bodyStyle.width = ''
     bodyStyle.overflow = ''
-    btf.animateOut(document.querySelector('#algolia-search .search-dialog'), 'search_close .5s')
-    btf.animateOut(document.getElementById('search-mask'), 'to_hide 0.5s')
+    acy.animateOut(document.querySelector('#algolia-search .search-dialog'), 'search_close .5s')
+    acy.animateOut(document.getElementById('search-mask'), 'to_hide 0.5s')
   }
 
   const searchClickFn = () => {
@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
       post = '...'
     }
 
-    const matchContent = pre + content.substring(start, end) + post
+    let matchContent = pre + content.substring(start, end) + post
     return matchContent
   }
 
@@ -68,11 +68,10 @@ window.addEventListener('load', () => {
 
   const search = instantsearch({
     indexName: algolia.indexName,
-    /* global algoliasearch */
     searchClient: algoliasearch(algolia.appId, algolia.apiKey),
-    searchFunction (helper) {
+    searchFunction(helper) {
       helper.state.query && helper.search()
-    }
+    },
   })
 
   const configure = instantsearch.widgets.configure({
@@ -90,16 +89,16 @@ window.addEventListener('load', () => {
   const hits = instantsearch.widgets.hits({
     container: '#algolia-hits',
     templates: {
-      item (data) {
+      item(data) {
         const link = data.permalink ? data.permalink : (GLOBAL_CONFIG.root + data.path)
         const result = data._highlightResult
         const content = result.contentStripTruncate
-          ? cutContent(result.contentStripTruncate.value)
-          : result.contentStrip
-            ? cutContent(result.contentStrip.value)
-            : result.content
-              ? cutContent(result.content.value)
-              : ''
+                        ? cutContent(result.contentStripTruncate.value)
+                        : result.contentStrip
+                        ? cutContent(result.contentStrip.value)
+                        : result.content
+                        ? cutContent(result.content.value)
+                        : ''
         return `
           <a href="${link}" class="algolia-hit-item-link">
           ${result.title.value || 'no-title'}
@@ -131,7 +130,7 @@ window.addEventListener('load', () => {
   })
 
   const powerBy = instantsearch.widgets.poweredBy({
-    container: '#algolia-info > .algolia-poweredBy'
+    container: '#algolia-info > .algolia-poweredBy',
   })
 
   const pagination = instantsearch.widgets.pagination({
@@ -145,7 +144,8 @@ window.addEventListener('load', () => {
     }
   })
 
-  search.addWidgets([configure, searchBox, hits, stats, powerBy, pagination]) // add the widgets to the instantsearch instance
+
+  search.addWidgets([configure,searchBox,hits,stats,powerBy,pagination]) // add the widgets to the instantsearch instance
 
   search.start()
 
