@@ -6,7 +6,7 @@
   <link href="https://wencun.love/atom.xml" rel="self"/>
   
   <link href="https://wencun.love/"/>
-  <updated>2023-05-07T09:08:55.004Z</updated>
+  <updated>2023-10-03T09:09:31.045Z</updated>
   <id>https://wencun.love/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://wencun.love/2023/10/03/Win32%20Disk%20Imager%20%E4%BD%BF%E7%94%A8%E5%90%8EU%E7%9B%98%E6%81%A2%E5%A4%8D/"/>
+    <id>https://wencun.love/2023/10/03/Win32%20Disk%20Imager%20%E4%BD%BF%E7%94%A8%E5%90%8EU%E7%9B%98%E6%81%A2%E5%A4%8D/</id>
+    <published>2023-10-03T09:09:31.045Z</published>
+    <updated>2023-10-03T09:09:31.045Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Win32-Disk-Imager-使用后U盘恢复"><a href="#Win32-Disk-Imager-使用后U盘恢复" class="headerlink" title="Win32 Disk Imager 使用后U盘恢复"></a>Win32 Disk Imager 使用后U盘恢复</h1><p><strong>此文不仅仅处理标题的问题，对于所有U盘的恢复初始化都可以。</strong></p><p>U盘在使用 win32 disk imager 写入过引导后，如果需要恢复U盘原始状态（初始化），可以按下面步骤操作：<br>1、windows下进入cmd命令窗口<br>2、输入 diskpart，显示如下：</p><blockquote><p>C:\Users\Administrator&gt;diskpart</p><p>Microsoft DiskPart 版本 10.0.14393.0</p><p>Copyright (C) 1999-2013 Microsoft Corporation.</p><p>在计算机上: SHANHY-PCDISKPART&gt;</p></blockquote><p>3、输入命令 list disk，显示如下：</p><blockquote><p>DISKPART&gt; list disk  </p><p>磁盘 ###  状态           大小     可用     Dyn  Gpt  ——–  ————-  ——-  ——-  —  —  磁盘 0    联机              465 GB      0 B        *  磁盘 1    联机             7540 MB  7489 MB        *</p><p>DISKPART&gt;</p></blockquote><p>4、很容易可以识别出U盘（此时我的U盘是磁盘1）输入 select disk 1 选择磁盘1，显示如下：</p><blockquote><p>DISKPART&gt; select disk 1</p><p>磁盘 1 现在是所选磁盘。</p><p>DISKPART&gt;</p></blockquote><p>5、输入 clean 清除磁盘（U盘中如果有重要内容记得提前备份），显示如下：</p><blockquote><p>DISKPART&gt; cleanDiskPart 成功地清除了磁盘。</p><p>DISKPART&gt;</p></blockquote><p>6、输入 create partition primary 创建主磁盘分区<br>7、输入 active 激活磁盘分区<br>8、输入 format fs=fat32 quick 以fat32格式快速格式化磁盘分区<br>这几步操作显示如下：</p><blockquote><p>DISKPART&gt; create partition primaryDiskPart 成功地创建了指定分区。</p><p>DISKPART&gt; activeDiskPart 将当前分区标为活动。</p><p>DISKPART&gt; format fs=fat32 quick  100 百分比已完成</p><p>DiskPart 成功格式化该卷。</p><p>DISKPART&gt;</p></blockquote><p>转载自: <a href="https://dandelioncloud.cn/article/details/1668109889433743361">Win32 Disk Imager 使用后U盘恢复-蒲公英云 (dandelioncloud.cn)</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Win32-Disk-Imager-使用后U盘恢复&quot;&gt;&lt;a href=&quot;#Win32-Disk-Imager-使用后U盘恢复&quot; class=&quot;headerlink&quot; title=&quot;Win32 Disk Imager 使用后U盘恢复&quot;&gt;&lt;/a&gt;Win32 Disk </summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title></title>
