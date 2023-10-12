@@ -1,1 +1,0 @@
-var posts=["2023/10/03/Win32 Disk Imager 使用后U盘恢复/","2023/04/02/临界区和临界资源/","2023/05/07/打开服务/","2023/04/02/操作系统介绍/","2022/11/07/JAVA复习/","2023/04/02/进程/","2023/04/05/进程管理/"];function toRandomPost(){pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);};
