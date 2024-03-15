@@ -1,8 +1,357 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>进程 · 温存的小窝</title><meta name="description" content="概念提出进程是60年代初首先由麻省理工学院的MULTICS系统和IBM公司的CTSS/360系统引入的。 [2] 
-进程是一个具有独立功能的程序关于某个数据集合的一次运行活动。它可以申请和拥有系统资源，是一个动态的概念，是一个活动的实体。它不只是程序的代码，还包括当前的活动，通过程序计数器的值和处理"><meta name="og:description" content="概念提出进程是60年代初首先由麻省理工学院的MULTICS系统和IBM公司的CTSS/360系统引入的。 [2] 
-进程是一个具有独立功能的程序关于某个数据集合的一次运行活动。它可以申请和拥有系统资源，是一个动态的概念，是一个活动的实体。它不只是程序的代码，还包括当前的活动，通过程序计数器的值和处理"><meta name="twitter:site" content="温存的小窝"><meta name="twitter:title" content="进程"><meta name="twitter:card" content="summary"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.4.2">
+<!doctype html>
+<html lang="zh"><head>
+<title>进程 - 温存的小窝</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="Normal _Italic_ **Strong**">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程">
+<meta property="og:url" content="https://wencun.love/2023/04/02/%E8%BF%9B%E7%A8%8B/index.html">
+<meta property="og:site_name" content="温存的小窝">
+<meta property="og:description" content="Normal _Italic_ **Strong**">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/04/05/zMK1tTeCPG3BsiI.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/04/05/hf3yH41GNLxpcd5.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/04/05/D6uN4rECdHTkFJp.jpg">
+<meta property="article:published_time" content="2023-04-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-12T11:36:48.045Z">
+<meta property="article:author" content="温存">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/04/05/zMK1tTeCPG3BsiI.jpg">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1710475474182">
+
+<link rel="stylesheet" href="/css/style.css?v=1710475474182">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1710475474182">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1710475474182"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4D4ZJ9G024"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-4D4ZJ9G024");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Typography</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">活版印字</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about/index.html">about</a></li><li><a href="/categories/index.html">分类</a></li><li><a href="/contact/index.html">contact</a></li><li><a href="/mapDepot/index.html">mapDepot</a></li><li><a href="/friends/index.html">friends</a></li><li><a href="/tags/index.html">标签</a></li><li><a href="/link/index.html">友情链接</a></li><li class="soc"><a href="https://wencun.love/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2023&nbsp;<a target="_blank" href="https://wencun.love" rel="noopener noreferrer">温存</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>进程</a></p><p class="post-meta"><span class="date meta-item">发布于&nbsp;2023-04-02</span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/操作系统/" title="操作系统">操作系统</a><span>&nbsp;</span></span></p><p class="post-abstract"><h2 id="概念提出"><a href="#概念提出" class="headerlink" title="概念提出"></a>概念提出</h2><p>进程是60年代初首先由<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%BA%BB%E7%9C%81%E7%90%86%E5%B7%A5%E5%AD%A6%E9%99%A2?fromModule=lemma_inlink">麻省理工学院</a>的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/MULTICS%E7%B3%BB%E7%BB%9F?fromModule=lemma_inlink">MULTICS系统</a>和IBM公司的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/CTSS?fromModule=lemma_inlink">CTSS</a>/360系统引入的。 [2] </p>
+<link rel="alternate" href="/atom.xml" title="温存的小窝" type="application/atom+xml">
+</head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(https://i.dawnlab.me/b5a7e61560facdd5b8aa9683fce147d7.png)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="温存"><img src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/avatar.png" alt="温存"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="温存">
+            <img src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/avatar.png" alt="温存" alt="温存">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>9</div>
+        <div><span>标签</span>3</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" target="_blank" rel="noopener" href="https://nexmoe.com/donate.html" title="给我赞助">
+            <i class="mdui-list-item-icon nexmoefont icon-coffee"></i>
+            <div class="mdui-list-item-content">
+                给我赞助
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" target="_blank" rel="noopener" href="https://i.nexmoe.com/" title="关于博主">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博主
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://jq.qq.com/?_wv=1027&k=5CfKHun"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ群'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/20238211"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/nexmoe/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://www.zhihu.com/people/nexmoe"
+			target="_blank"
+			mdui-tooltip="{content: '知乎'}"
+			style="
+				color: rgb(30, 136, 229);
+				background-color: rgba(30, 136, 229, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-zhihu"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/nexmoe"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://nexmoe.com/atom.xml"
+			target="_blank"
+			mdui-tooltip="{content: 'RSS'}"
+			style="
+				color: rgb(247, 132, 34);
+				background-color: rgba(247, 132, 34, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-rss"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 20px;">操作系统</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/" style="font-size: 10px;">操作系统导论</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(3);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/10/12/%E8%BD%BB%E5%B0%8F%E8%AF%B4%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/12/obsidian%E6%8F%92%E4%BB%B6/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/03/Win32%20Disk%20Imager%20%E4%BD%BF%E7%94%A8%E5%90%8EU%E7%9B%98%E6%81%A2%E5%A4%8D/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/07/%E6%89%93%E5%BC%80%E6%9C%8D%E5%8A%A1/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/05/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">进程管理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-link">
+		<ul>
+        
+            <li>
+                <a href="https://nexmoe.com/" target="_blank" >
+                    <img src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/avatar.png" alt="折影轻梦"></img>
+                    <p>折影轻梦</p>
+                </a>
+            </li>
+        
+		</ul>
+    </div>
+</div>
+<style>
+.nexmoe-widget-wrap .nexmoe-link ul li a {
+    text-align : center;
+}
+.nexmoe-widget-wrap .nexmoe-link ul li a img {
+    max-width : 100%;
+}
+.nexmoe-widget-wrap .nexmoe-link ul li a p {
+    margin: 10px 0;
+}
+</style>
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 温存
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+<br><a target="_blank" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral">
+<img src="https://i.dawnlab.me/c0268c1e6cfd0863d6ba35be1575941a.png" width="150px"></a>
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://s2.loli.net/2023/04/06/9U5Mv6lREecPiS4.jpg" alt="进程" loading="lazy">
+            <h1>进程</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2023年04月02日</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h2 id="概念提出"><a href="#概念提出" class="headerlink" title="概念提出"></a>概念提出</h2><p>进程是60年代初首先由<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%BA%BB%E7%9C%81%E7%90%86%E5%B7%A5%E5%AD%A6%E9%99%A2?fromModule=lemma_inlink">麻省理工学院</a>的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/MULTICS%E7%B3%BB%E7%BB%9F?fromModule=lemma_inlink">MULTICS系统</a>和IBM公司的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/CTSS?fromModule=lemma_inlink">CTSS</a>/360系统引入的。 [2] </p>
 <p>进程是一个具有独立功能的程序关于某个数据集合的一次运行活动。它可以申请和拥有系统资源，是一个动态的概念，是一个活动的实体。它不只是程序的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BB%A3%E7%A0%81?fromModule=lemma_inlink">代码</a>，还包括当前的活动，通过<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8?fromModule=lemma_inlink">程序计数器</a>的值和处理<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%84%E5%AD%98%E5%99%A8?fromModule=lemma_inlink">寄存器</a>的内容来表示。</p>
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>狭义定义：进程是正在运行的程序的实例（an instance of a computer program that is being executed）。</p>
 <p>广义定义：进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动。它是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/192?fromModule=lemma_inlink">操作系统</a>动态执行的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9F%BA%E6%9C%AC%E5%8D%95%E5%85%83?fromModule=lemma_inlink">基本单元</a>，在传统的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F?fromModule=lemma_inlink">操作系统</a>中，进程既是基本的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%88%86%E9%85%8D%E5%8D%95%E5%85%83?fromModule=lemma_inlink">分配单元</a>，也是基本的执行单元。</p>
@@ -19,13 +368,13 @@
 <p>多个不同的进程可以包含相同的程序：一个程序在不同的数据集里就构成不同的进程，能得到不同的结果；但是执行过程中，程序不能发生改变。</p>
 <h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>一个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F?fromModule=lemma_inlink">计算机系统</a>进程包括（或者说“拥有”）下列数据：</p>
 <p>那个程序的可运行<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%BA%E5%99%A8%E7%A0%81?fromModule=lemma_inlink">机器码</a>的一个在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%98%E5%82%A8%E5%99%A8?fromModule=lemma_inlink">存储器</a>的映像。 分配到的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%98%E5%82%A8%E5%99%A8?fromModule=lemma_inlink">存储器</a>（通常包括<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98?fromModule=lemma_inlink">虚拟内存</a>的一个区域）。<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%98%E5%82%A8%E5%99%A8?fromModule=lemma_inlink">存储器</a>的内容包括可运行<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BB%A3%E7%A0%81?fromModule=lemma_inlink">代码</a>、特定于进程的数据（输入、输出）、调用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A0%86%E6%A0%88?fromModule=lemma_inlink">堆栈</a>、堆栈（用于保存运行时运数中途产生的数据）。 分配给该进程的资源的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F?fromModule=lemma_inlink">操作系统</a>描述符，诸如文件描述符（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Unix?fromModule=lemma_inlink">Unix</a>术语）或<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84?fromModule=lemma_inlink">文件句柄</a>（Windows）、数据源和数据终端。 安全特性，诸如进程拥有者和进程的权限集（可以容许的操作）。 处理器状态（内文），诸如<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%84%E5%AD%98%E5%99%A8?fromModule=lemma_inlink">寄存器</a>内容、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%89%A9%E7%90%86%E5%AD%98%E5%82%A8%E5%99%A8?fromModule=lemma_inlink">物理存储器</a>寻址等。当进程正在运行时，状态通常储存在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%84%E5%AD%98%E5%99%A8?fromModule=lemma_inlink">寄存器</a>，其他<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%83%85%E5%86%B5?fromModule=lemma_inlink">情况</a>在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%98%E5%82%A8%E5%99%A8?fromModule=lemma_inlink">存储器</a>。</p>
-<h3 id="切换"><a href="#切换" class="headerlink" title="切换"></a>切换</h3><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/pic/%E8%BF%9B%E7%A8%8B/382503/0/ac2fc3c459bc3aae38db4968?fr=lemma&amp;fromModule=lemma_content-image&amp;ct=single"><img src="https://s2.loli.net/2023/04/05/zMK1tTeCPG3BsiI.jpg" alt="Windows 和Windows Vista 体系结构"></a>Windows 和Windows Vista 体系结构</p>
+<h3 id="切换"><a href="#切换" class="headerlink" title="切换"></a>切换</h3><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/pic/%E8%BF%9B%E7%A8%8B/382503/0/ac2fc3c459bc3aae38db4968?fr=lemma&amp;fromModule=lemma_content-image&amp;ct=single"><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://s2.loli.net/2023/04/05/zMK1tTeCPG3BsiI.jpg" alt="Windows 和Windows Vista 体系结构" data-caption="Windows 和Windows Vista 体系结构" loading="lazy"></a>Windows 和Windows Vista 体系结构</p>
 <p>进行<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2?fromModule=lemma_inlink">进程切换</a>就是从正在运行的进程中收回<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%84%E7%90%86%E5%99%A8?fromModule=lemma_inlink">处理器</a>，然后再使待运行进程来占用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%84%E7%90%86%E5%99%A8?fromModule=lemma_inlink">处理器</a>。</p>
 <p>这里所说的从某个进程收回<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%84%E7%90%86%E5%99%A8?fromModule=lemma_inlink">处理器</a>，实质上就是把进程存放在处理器的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%84%E5%AD%98%E5%99%A8?fromModule=lemma_inlink">寄存器</a>中的中间数据找个地方存起来，从而把处理器的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%84%E5%AD%98%E5%99%A8?fromModule=lemma_inlink">寄存器</a>腾出来让其他进程使用。那么被中止运行进程的中间数据存在何处好呢？当然这个地方应该是进程的私有<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A0%86%E6%A0%88?fromModule=lemma_inlink">堆栈</a>。</p>
 <p>让进程来占用处理器，实质上是把某个进程存放在私有<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A0%86%E6%A0%88?fromModule=lemma_inlink">堆栈</a>中<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%84%E5%AD%98%E5%99%A8?fromModule=lemma_inlink">寄存器</a>的数据（前一次本进程被中止时的中间数据）再恢复到处理器的寄存器中去，并把待运行进程的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%AD%E7%82%B9?fromModule=lemma_inlink">断点</a>送入处理器的程序<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8C%87%E9%92%88?fromModule=lemma_inlink">指针</a>PC，于是待运行进程就开始被处理器运行了，也就是这个进程已经占有处理器的使用权了。</p>
 <p>这就像多个同学要分时使用同一张课桌一样，所谓要收回正在使用课桌同学的课桌使用权，实质上就是让他把属于他的东西拿走；而赋予某个同学课桌使用权，只不过就是让他把他的东西放到课桌上罢了。</p>
 <p>在切换时，一个进程存储在处理器各<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%84%E5%AD%98%E5%99%A8?fromModule=lemma_inlink">寄存器</a>中的中间数据叫做进程的上下文，所以进程的 切换实质上就是被中止运行进程与待运行<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87?fromModule=lemma_inlink">进程上下文</a>的切换。在进程未占用处理器时，进程 的上下文是存储在进程的私有<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A0%86%E6%A0%88?fromModule=lemma_inlink">堆栈</a>中的。</p>
-<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/pic/%E8%BF%9B%E7%A8%8B/382503/0/d089b986cb94db6866096e7e?fr=lemma&amp;fromModule=lemma_content-image&amp;ct=single"><img src="https://s2.loli.net/2023/04/05/hf3yH41GNLxpcd5.jpg" alt="进程的三个基本状态"></a>进程的三个基本状态</p>
+<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/pic/%E8%BF%9B%E7%A8%8B/382503/0/d089b986cb94db6866096e7e?fr=lemma&amp;fromModule=lemma_content-image&amp;ct=single"><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://s2.loli.net/2023/04/05/hf3yH41GNLxpcd5.jpg" alt="进程的三个基本状态" data-caption="进程的三个基本状态" loading="lazy"></a>进程的三个基本状态</p>
 <p>进程执行时的间断性，决定了进程可能具有多种状态。事实上，运行中的进程可能具有以下三种基本状态。</p>
 <p><strong>1）</strong><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B0%B1%E7%BB%AA%E7%8A%B6%E6%80%81?fromModule=lemma_inlink">就绪状态</a><strong>（Ready）：</strong></p>
 <p>进程已获得除处理器外的所需<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%B5%84%E6%BA%90?fromModule=lemma_inlink">资源</a>，等待分配处理器资源；只要分配了处理器进程就可执行。就绪进程可以按多个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BC%98%E5%85%88%E7%BA%A7?fromModule=lemma_inlink">优先级</a>来划分<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%98%9F%E5%88%97?fromModule=lemma_inlink">队列</a>。例如，当一个进程由于时间片用完而进入<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B0%B1%E7%BB%AA%E7%8A%B6%E6%80%81?fromModule=lemma_inlink">就绪状态</a>时，排入低<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97?fromModule=lemma_inlink">优先级队列</a>；当进程由<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/I%2FO%E6%93%8D%E4%BD%9C?fromModule=lemma_inlink">I/O操作</a>完成而进入<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B0%B1%E7%BB%AA%E7%8A%B6%E6%80%81?fromModule=lemma_inlink">就绪状态</a>时，排入高优先级队列。</p>
@@ -42,7 +391,7 @@
 <p>同一程序同时运行于若干个数据集合上，它将属于若干个不同的进程，也就是说同一程序可以对应多个进程。</p>
 <p>在传统的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F?fromModule=lemma_inlink">操作系统</a>中，程序并不能独立运行，作为资源分配和独立运行的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9F%BA%E6%9C%AC%E5%8D%95%E5%85%83?fromModule=lemma_inlink">基本单元</a>都是进程。</p>
 <p><strong>线程</strong></p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/pic/%E8%BF%9B%E7%A8%8B/382503/0/f95898180b7961d14aedbcce?fr=lemma&amp;fromModule=lemma_content-image&amp;ct=single"><img src="https://s2.loli.net/2023/04/05/D6uN4rECdHTkFJp.jpg" alt="进程和线程关系"></a>进程和线程关系</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/pic/%E8%BF%9B%E7%A8%8B/382503/0/f95898180b7961d14aedbcce?fr=lemma&amp;fromModule=lemma_content-image&amp;ct=single"><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://s2.loli.net/2023/04/05/D6uN4rECdHTkFJp.jpg" alt="进程和线程关系" data-caption="进程和线程关系" loading="lazy"></a>进程和线程关系</p>
 <p>通常在一个进程中可以包含若干个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%BF%E7%A8%8B?fromModule=lemma_inlink">线程</a>，它们可以利用进程所拥有的资源，在引入<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%BF%E7%A8%8B?fromModule=lemma_inlink">线程</a>的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F?fromModule=lemma_inlink">操作系统</a>中，通常都是把进程作为分配资源的基本单位，而把线程作为独立运行和独立调度的基本单位，由于<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%BF%E7%A8%8B?fromModule=lemma_inlink">线程</a>比进程更小，基本上不拥有<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90?fromModule=lemma_inlink">系统资源</a>，故对它的调度所付出的开销就会小得多，能更高效的提高系统内多个程序间并发执行的程度。</p>
 <p><strong>管程</strong></p>
 <p>系统中的各种硬件资源和软件资源,均可用数据结构抽象地描述其资源特性,即用少量信息和对资源所执行的操作来表征该资源,而忽略了它们的内部结构和实现细节。</p>
@@ -108,4 +457,61 @@
 <blockquote>
 <p>来自百度百科</p>
 </blockquote>
-</p></div><div class="share"><span>分享到</span>&nbsp;<span class="soc"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></span><span class="soc"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></span><span class="soc"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=https://wencun.love/2023/04/02/进程/%20温存的小窝%20进程"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/2023/04/02/%E4%B8%B4%E7%95%8C%E5%8C%BA%E5%92%8C%E4%B8%B4%E7%95%8C%E8%B5%84%E6%BA%90/" title="临界区与临界资源"><i class="fa fa-angle-double-left"></i>&nbsp;上一篇: 临界区与临界资源</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2022/11/07/JAVA%E5%A4%8D%E4%B9%A0/" title="java复习">下一篇: java复习&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2023&nbsp;<a target="_blank" href="https://wencun.love" rel="noopener noreferrer">温存</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
+
+    <p><img src="https://i.dawnlab.me/53a8c7cf3ad77a0f0a456ce2c6afe88a.png" loading="lazy"></p>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>温存<br>
+        <strong>本文链接：</strong><a href="https://wencun.love/2023/04/02/%E8%BF%9B%E7%A8%8B/" title="https:&#x2F;&#x2F;wencun.love&#x2F;2023&#x2F;04&#x2F;02&#x2F;%E8%BF%9B%E7%A8%8B&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wencun.love&#x2F;2023&#x2F;04&#x2F;02&#x2F;%E8%BF%9B%E7%A8%8B&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1710475474128"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          请在你的配置文件中设置 slotComment
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E6%8F%90%E5%87%BA"><span class="toc-number">1.</span> <span class="toc-text">概念提出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%BE%81"><span class="toc-number">2.2.</span> <span class="toc-text">特征</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9"><span class="toc-number">3.</span> <span class="toc-text">内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E6%8D%A2"><span class="toc-number">3.1.</span> <span class="toc-text">切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81"><span class="toc-number">3.2.</span> <span class="toc-text">状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-number">3.3.</span> <span class="toc-text">区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6"><span class="toc-number">3.4.</span> <span class="toc-text">控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">3.5.</span> <span class="toc-text">调度算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5"><span class="toc-number">3.6.</span> <span class="toc-text">阶段</span></a></li></ol></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+</div></body></html>
